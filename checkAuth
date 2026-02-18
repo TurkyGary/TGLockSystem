@@ -1,0 +1,13 @@
+#/bin/bash
+
+TEMP_FILE=./logs/access/read.tmp
+
+
+# import the Raw key 
+raw=$(grep -oP '(?<=Raw: ).{16}' $TEMP_FILE)
+echo $raw
+
+# look for key in allowed members
+
+
+# Unlock/Ignore

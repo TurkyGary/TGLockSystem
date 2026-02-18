@@ -1,0 +1,13 @@
+#!/bin/bash
+
+TEMP_FILE=./logs/access/read.tmp
+
+if [[ $(grep -o "ok" $TEMP_FILE) == "ok" ]];
+then
+echo "Card Read Successfully"
+checkAuth
+else
+echo "Card Unrecognized"
+#nop 
+# do nothing
+fi

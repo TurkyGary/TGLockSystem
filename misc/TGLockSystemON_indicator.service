@@ -1,0 +1,13 @@
+[Unit]
+Description=Run command at startup
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /home/ecel2b40/scripts/systemON.py
+# OR for a simple command:
+# ExecStart=/usr/bin/bash -c 'python /home/ecel2b40/scripts/systemON.py'
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+# Adding TGLockSystem executables to the system default path
+1- copy the file EnvVar.sh to the folder /etc/profile.d/
+2- change the file permissions to 666
+
+
+# Run scripts at boot 
+1- copy the folder 'scripts' to the $HOME folder of the default user
+2- copy the file 'TGLockSystemON_indicator.service' to /etc/systemd/system folder
+3- enable the service at boot by runnig this command ( sudo systemctl enable TGLockSystemON_indicator.service )
+
+
+

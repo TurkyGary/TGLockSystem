@@ -1,0 +1,11 @@
+#!/bin/bash
+PORT="/dev/ttyACM0"
+
+#while true
+#do
+proxmark3 -p $PORT -c "lf io read" |grep "IO" | sed "s/+/$(date '+%Y%b%d_%H%M%S'|tr '[:lower:]' '[:upper:]')/"> ./logs/access/read.tmp
+#sleep 3
+#done
+
+# check that the card read is correct 
+confirmIOcard

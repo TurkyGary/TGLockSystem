@@ -13,3 +13,7 @@
 1- append the default profile (~/.profile) with the following line:
 export PATH=$PATH:$TGLOCKSYS
 2- logout then login again
+
+# Adjust Switch-ON/OFF, RTC hwclock, 
+- All configuration in /boot/firmware/config.txt
+

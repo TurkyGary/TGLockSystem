@@ -1,6 +1,6 @@
 #/bin/bash
 
-TEMP_FILE=./logs/access/read.tmp
+TEMP_FILE=$TGLOCKSYS/logs/access/read.tmp
 
 
 # import the Raw key 

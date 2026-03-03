@@ -1,0 +1,26 @@
+#!/bin/bash
+
+TGLOCKSYS="$HOME/Documents/TGLockSystem"
+TEMP_FILE="$TGLOCKSYS/logs/access/read.tmp"
+
+while true
+do
+    "$TGLOCKSYS/readIDcard"
+
+    raw=$(grep -oP '(?<=Raw: ).{16}' "$TEMP_FILE")
+
+    if [ ! -z "$raw" ]; then
+        echo "Card: $raw"
+
+        if grep -q "$raw" "$TGLOCKSYS/members/access_list.csv"; then
+            echo "Access Granted"
+            python3 "$TGLOCKSYS/misc/scripts/unlock.py"
+        else
+            echo "Access Denied"
+        fi
+
+        > "$TEMP_FILE"
+    fi
+
+    sleep 1
+done

@@ -5,9 +5,19 @@ TEMP_FILE=$TGLOCKSYS/logs/access/read.tmp
 
 # import the Raw key 
 raw=$(grep -oP '(?<=Raw: ).{16}' $TEMP_FILE)
-echo $raw
+#echo $raw
+chkmem=$(grep $raw $TGLOCKSYS/members/access_list.csv | cut -d ',' -f1 | wc -l)
+if [ "$chkmem" -eq 1 ]; then
+user=$(grep $raw $TGLOCKSYS/members/access_list.csv | cut -d ',' -f1)
+fi
 
 # look for key in allowed members
+granted=$(grep $user $TGLOCKSYS/members/granted.csv | wc -l) 
+if [ "$granted" -eq 1 ]; then
+python $TGLOCKSYS/misc/scripts/unlock.py
+echo "Door is unlocked."
+fi
+
 
 
 # Unlock/Ignore

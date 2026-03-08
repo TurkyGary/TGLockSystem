@@ -1,11 +1,43 @@
 #!/bin/bash
 PORT="/dev/ttyACM0"
 
+function readCard(){
 #while true
 #do
 proxmark3 -p $PORT -c "lf io read" |grep "IO" | sed "s/+/$(date '+%Y%b%d_%H%M%S'|tr '[:lower:]' '[:upper:]')/"> $TGLOCKSYS/logs/access/read.tmp
 #sleep 3
 #done
+}
+if [ $# -lt 1 ];then
+# read card from reader
+readCard
 
 # check that the card read is correct 
 confirmIDcard
+
+else if [ $# -gt 0 ] && [ $# -lt 4 ];then
+if [ $# -eq 1 ];then
+if [ $1 == "-h" ] || [ $1 == "--help" ];then
+echo -e "Usage: readIDcard [OPTION]... [ARGUMENTS]...\nRead ID cards and register new cards to the system\n   -h   --help\tshow command help.\n   register\tadd new card to the system.\nARGUMENTS:\n\tHolder_ID\tIdentification number of the card holder.\n\tHolder_Name\tFull name of the card holder."
+fi
+if [ $1 == "register" ];then
+echo -e "Enter Card Holder ID: \c"
+read HID
+echo -e "Enter Card Holder Full Name: \c"
+read HNAME
+echo "Reading ID Card..."
+readCard
+record=`sed "s/-/,/g" $TGLOCKSYS/logs/access/read.tmp | tr -d ' '`
+record+=",$HID,$HNAME"
+echo $record >> $TGLOCKSYS/members/.bkp.log
+echo "New card has been added."
+fi
+fi
+if [ $# -eq 2 ];then
+echo "two: $@"
+fi
+if [ $# -eq 3 ];then
+echo "three: $@"
+fi
+fi
+fi 

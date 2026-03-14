@@ -4,7 +4,8 @@ TEMP_FILE=$TGLOCKSYS/logs/access/read.tmp
 
 if [[ $(grep -o "ok" $TEMP_FILE) == "ok" ]];
 then
-echo "Card Read Successfully"
+#echo "Card Read Successfully"
+#python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_success
 checkAuth
 else
 echo "Card Unrecognized"

@@ -9,6 +9,8 @@ then
 checkAuth
 else
 echo "Card Unrecognized"
+python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_fail &
+python $TGLOCKSYS/misc/scripts/readerLED.py RLED_blink 2 &
 #nop 
 # do nothing
 fi

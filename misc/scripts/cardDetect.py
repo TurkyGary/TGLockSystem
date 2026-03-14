@@ -1,9 +1,11 @@
 #!/bin/env python
+#import RPi.GPIO as GPIO
 from gpiozero import DigitalInputDevice
 from gpiozero import LED
 from signal import pause
 import time
 import subprocess
+#import readerLED
 
 # Powered by GPIO24
 SensorPin = LED(24)
@@ -14,8 +16,9 @@ sensor = DigitalInputDevice(10, pull_up=False, bounce_time=0.01)
 
 def card_detected():
     print("card detected!")
+    #readerLED.BLED_blink(2)
     subprocess.run(["readIDcard"])
-    time.sleep(3)
+#    time.sleep(1)
 
 def card_clear():
     print("Place card to read.")
@@ -24,5 +27,5 @@ def card_clear():
 sensor.when_deactivated = card_clear
 sensor.when_activated = card_detected
 
-print("IR Sensor Active... Press Ctrl+C to exit")
+print("Proximity(IR) Sensor Active... Press Ctrl+C to exit")
 pause()

@@ -12,7 +12,7 @@ do
     if [ ! -z "$raw" ]; then
         echo "Card: $raw"
 
-        if grep -q "$raw" "$TGLOCKSYS/members/access_list.csv"; then
+        if grep -q "$raw" "$TGLOCKSYS/data/access_list.csv"; then
             echo "Access Granted"
             python3 "$TGLOCKSYS/misc/scripts/unlock.py"
         else

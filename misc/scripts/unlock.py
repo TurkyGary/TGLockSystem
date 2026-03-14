@@ -2,16 +2,10 @@
 
 from gpiozero import LED
 from time import sleep
+import readerLED
 
 # GPIO26 using BCM numbering
 pin = LED(26)
 
-# Turn ON
-pin.on()
-
-# Keep it ON for 1 second
-sleep(1)
-
-# Turn OFF
-pin.off()
-
+# Turn LED Green
+readerLED.GLED_on(1)

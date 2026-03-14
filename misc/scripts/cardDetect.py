@@ -21,7 +21,7 @@ def card_clear():
     print("Place card to read.")
 
 # Assign functions to events
-sensor.when_activated = card_clear
+sensor.when_deactivated = card_clear
 sensor.when_activated = card_detected
 
 print("IR Sensor Active... Press Ctrl+C to exit")

@@ -13,12 +13,19 @@ user=$(grep $raw $TGLOCKSYS/members/access_list.csv | cut -d ',' -f1)
 # look for key in allowed members
 granted=$(grep $user $TGLOCKSYS/members/granted.csv | wc -l) 
 if [ "$granted" -eq 1 ]; then
-python $TGLOCKSYS/misc/scripts/unlock.py
+python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_success &
+python $TGLOCKSYS/misc/scripts/unlock.py &
 echo "Door is unlocked."
+else
+echo "Access Denied"
+python $TGLOCKSYS/misc/scripts/readerLED.py RLED_blink 2 &
+python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_fail &
 fi
 
 else
 echo "Card is not registered"
+python $TGLOCKSYS/misc/scripts/readerLED.py RLED_blink 2 &
+python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_fail &
 fi
 
 

@@ -1,0 +1,44 @@
+Platform: Raspberry Pi Zero 2 Wifi
+Operating System: Debian GNU/Linux 13.3 (trixie)
+Last Update: March 15, 2026 19:41
+
+-----
+
+Hostname: rpiz2w
+Username: ecel2b40
+Password: Q1@asd_zxc
+
+-----
+
+IP Address: 192.168.192.168
+
+-----
+
+Other Users: root
+root Password: Q1@asd_zxc
+
+-----
+
+Installed Modules     |     Pins(fn)[GPIO]
+===========================================
+1- Proxmark3 Easy           USB (/dev/ttyACM0)
+
+2- Proximity IR (KY-032)    18(on/of)[24], 19(input)[10], 20(GND)[GND]
+
+3- RGB LED                  21(BLED)[9], 22(GLED)[25], 23(RLED)[11], 25(GND)[GND]
+
+4- Buzzer                   28(Positive+)[1], 30(GND)[GND]
+
+5- Door Remote Control      2(5volts)[], 37(NPN-base)[26], 39(GND)[GND]
+
+6- HW-Shutdown Button       13(Positive+)[27], 14(GND)[GND]
+
+7- HW-PowerOn Button        5(Positive+)[3], 6(GND)[GND]
+Note: Use only when device is OFF.
+
+8- RTC(DS3231)              1(3.3volts)[VCC], 3(SDA)[2], 5(SCL)[3], 6(GND)[GND]
+
+9- LED System ON indicator  7(Anode+)[4], 9(Cathode)[GND]
+
+10- Power Adapter (5volts)  USB wall adapter
+

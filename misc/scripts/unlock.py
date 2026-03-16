@@ -13,4 +13,4 @@ sleep(1)
 pin.off()
 
 # Turn LED Green
-readerLED.GLED_on(1)
+#readerLED.GLED_on(1)

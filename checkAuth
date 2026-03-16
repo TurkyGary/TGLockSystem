@@ -1,42 +1,45 @@
 #/bin/bash
 
-TEMP_FILE=$TGLOCKSYS/logs/access/read.tmp
+TEMP_FILE=/home/ecel2b40/Documents/TGLockSystem/logs/access/read.tmp
 #webServer_timeout=300 # 5 minutes
 webServer_timeout=120 # 2 minute
 
 # import the Raw key 
 raw=$(grep -oP '(?<=Raw: ).{16}' $TEMP_FILE)
 #echo $raw
-chkmem=$(grep $raw $TGLOCKSYS/data/access_list.csv | cut -d ',' -f1 | wc -l)
+chkmem=$(grep $raw /home/ecel2b40/Documents/TGLockSystem/data/access_list.csv | cut -d ',' -f1 | wc -l)
 if [ "$chkmem" -eq 1 ]; then
-user=$(grep $raw $TGLOCKSYS/data/access_list.csv | cut -d ',' -f1)
+user=$(grep $raw /home/ecel2b40/Documents/TGLockSystem/data/access_list.csv | cut -d ',' -f1)
 
 # look for key in allowed members
-granted=$(grep $user $TGLOCKSYS/data/granted.csv | wc -l) 
-admin=$(grep $user $TGLOCKSYS/data/admins.csv | wc -l) 
-super=$(grep $user $TGLOCKSYS/data/super.csv | wc -l)
+granted=$(grep $user /home/ecel2b40/Documents/TGLockSystem/data/granted.csv | wc -l) 
+admin=$(grep $user /home/ecel2b40/Documents/TGLockSystem/data/admins.csv | wc -l) 
+super=$(grep $user /home/ecel2b40/Documents/TGLockSystem/data/super.csv | wc -l)
 if [ "$granted" -gt 0 ]; then
-python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_success &
-python $TGLOCKSYS/misc/scripts/unlock.py &
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_success &
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/unlock.py &
 echo "Door is unlocked."
 if [ "$admin" -gt 0 ]; then
-bash $TGLOCKSYS/misc/scripts/TGLockHotspot.sh &
+bash /home/ecel2b40/Documents/TGLockSystem/misc/scripts/TGLockHotspot.sh &
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py BLED_on 3 &
 if [ "$super" -gt 0 ]; then
-timeout $webServer_timeout python3 $TGLOCKSYS/misc/webUI/webSuper.py &
+timeout $webServer_timeout python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webSuper.py &
 else
-timeout $webServer_timeout python3 $TGLOCKSYS/misc/webUI/webRegister.py &
+timeout $webServer_timeout python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webRegister.py &
 fi
+else
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py GLED_on 1 &
 fi
 else
 echo "Access Denied"
-python $TGLOCKSYS/misc/scripts/readerLED.py RLED_blink 2 &
-python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_fail &
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py RLED_blink 2 &
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_fail &
 fi
 
 else
 echo "Card is not registered"
-python $TGLOCKSYS/misc/scripts/readerLED.py RLED_blink 2 &
-python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_fail &
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py RLED_blink 2 &
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_fail &
 fi
 
 

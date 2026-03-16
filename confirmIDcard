@@ -1,16 +1,16 @@
 #!/bin/bash
 
-TEMP_FILE=$TGLOCKSYS/logs/access/read.tmp
+TEMP_FILE=/home/ecel2b40/Documents/TGLockSystem/logs/access/read.tmp
 
 if [[ $(grep -o "ok" $TEMP_FILE) == "ok" ]];
 then
 #echo "Card Read Successfully"
-#python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_success
-checkAuth
+#python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_success
+/home/ecel2b40/Documents/TGLockSystem/checkAuth
 else
 echo "Card Unrecognized"
-python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_fail &
-python $TGLOCKSYS/misc/scripts/readerLED.py RLED_blink 2 &
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_fail &
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py RLED_blink 2 &
 #nop 
 # do nothing
 fi

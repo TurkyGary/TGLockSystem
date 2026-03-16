@@ -1,12 +1,12 @@
 [Unit]
-Description=Run command at startup
+Description=LED indecator for TGLockSystem running status
 After=network.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/python3 /home/ecel2b40/scripts/systemON.py
+ExecStart=/usr/bin/python3 /home/ecel2b40/Documents/TGLockSystem/misc/scripts/systemON.py
 # OR for a simple command:
-# ExecStart=/usr/bin/bash -c 'python /home/ecel2b40/scripts/systemON.py'
+# ExecStart=/usr/bin/bash -c '/home/ecel2b40/Documents/TGLockSystem/misc/scripts/systemON.py'
 RemainAfterExit=yes
 
 [Install]

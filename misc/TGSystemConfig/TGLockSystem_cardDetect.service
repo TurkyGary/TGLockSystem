@@ -1,0 +1,17 @@
+[Unit]
+Description=Card Detect Service
+After=network.target
+
+[Service]
+# Set the user who owns the script
+User=ecel2b40
+Group=ecel2b40
+WorkingDirectory=/home/ecel2b40/Documents/TGLockSystem/misc/scripts/
+ExecStart=/usr/bin/python3 /home/ecel2b40/Documents/TGLockSystem/misc/scripts/cardDetect.py
+Restart=on-failure
+# Optional: Ensure output shows up in 'journalctl -u TGLockSystem_cardDetect.service'
+StandardOutput=inherit
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

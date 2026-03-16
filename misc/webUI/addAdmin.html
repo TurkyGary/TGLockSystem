@@ -1,0 +1,24 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Admins(Super)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="width:430px; margin: 20px auto;">
+<div class="mobile-container">
+<header>
+<h1>Add Admins(Super)</h1>
+<p>Current System Temperature is {}</p>
+</header>
+<form action="/" method="POST">
+    <h2>Make Admin</h2>
+    User ID:
+    <input type="text" id="userID" name="userID" placeholder="0123456789"/>
+    <br/>
+    <br/>
+    <input type="submit" name="submit" value="Make"/>
+</form>
+</div>
+</body>
+</html>

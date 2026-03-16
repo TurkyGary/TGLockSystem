@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TGLockSystem(Super)</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body style="width:430px; margin: 20px auto;">
+<div class="mobile-container">
+<header>
+<h1>TGLockSystem(Super)</h1>
+<p>Current System Temperature is {}</p>
+</header>
+<form action="/" method="POST">
+    User ID:
+    <input type="text" id="userID" name="userID" placeholder="0123456789"/>
+    <br/>
+    <br/>
+    Full Name:
+    <input type="text" id="username" name="username" placeholder="e.g. Turky Gary"/>
+    <br/>
+    <br/>
+    <b>Place the ID card on the reader,<b/>
+    <br/>
+    <b>then press (register)<b/>
+    <br/>
+    <br/>
+    <input type="submit" name="submit" value="register"/>
+</form>
+</div>
+<div>
+<h2><a href="addAdmin.html" target="_self">Add New Admin</a></h2>
+</div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* 1. Reset & Core Setup */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent; /* Removes the grey box on tap */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f8f9fa;
+  color: #212529;
+  line-height: 1.5;
+}
+
+/* 2. Container to fill the screen */
+.mobile-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Fills the vertical screen */
+  padding: 24px;
+  max-width: 500px; /* Keeps it centered if viewed on tablet/desktop */
+  margin: 0 auto;
+}
+
+/* 3. Typography */
+header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+p {
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+/* 4. Button Stack Layout */
+.button-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Spacing between buttons */
+  margin-top: auto; /* Pushes buttons toward the bottom thumb-zone */
+}
+
+/* 5. Button Styling */
+button {
+  display: block;
+  width: 100%;
+  padding: 18px; /* Large tap target */
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease, background 0.2s;
+}
+
+button:active {
+  transform: scale(0.98); /* Visual feedback when tapped */
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #007bff;
+  color: #007bff;
+}
+
+.orangeBTN {
+  border: 0;
+  line-height: 2.5;
+  padding: 0 20px;
+  font-size: 1rem;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 1px black;
+  border-radius: 10px;
+  background-color: tomato;
+  background-image: linear-gradient(
+    to top left,
+    rgb(0 0 0 / 20%),
+    rgb(0 0 0 / 20%) 30%,
+    transparent
+  );
+  box-shadow:
+    inset 2px 2px 3px rgb(255 255 255 / 60%),
+    inset -2px -2px 3px rgb(0 0 0 / 60%);
+}
+
+.orangeBTN:hover {
+  background-color: red;
+}
+
+.orangeBTN:active {
+  box-shadow:
+    inset -2px -2px 3px rgb(255 255 255 / 60%),
+    inset 2px 2px 3px rgb(0 0 0 / 60%);
+}
+

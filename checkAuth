@@ -1,7 +1,8 @@
 #/bin/bash
 
 TEMP_FILE=$TGLOCKSYS/logs/access/read.tmp
-
+#webServer_timeout=300 # 5 minutes
+webServer_timeout=120 # 2 minute
 
 # import the Raw key 
 raw=$(grep -oP '(?<=Raw: ).{16}' $TEMP_FILE)
@@ -12,10 +13,20 @@ user=$(grep $raw $TGLOCKSYS/data/access_list.csv | cut -d ',' -f1)
 
 # look for key in allowed members
 granted=$(grep $user $TGLOCKSYS/data/granted.csv | wc -l) 
-if [ "$granted" -eq 1 ]; then
+admin=$(grep $user $TGLOCKSYS/data/admins.csv | wc -l) 
+super=$(grep $user $TGLOCKSYS/data/super.csv | wc -l)
+if [ "$granted" -gt 0 ]; then
 python $TGLOCKSYS/misc/scripts/buzzer.py cardRead_success &
 python $TGLOCKSYS/misc/scripts/unlock.py &
 echo "Door is unlocked."
+if [ "$admin" -gt 0 ]; then
+bash $TGLOCKSYS/misc/scripts/TGLockHotspot.sh &
+if [ "$super" -gt 0 ]; then
+timeout $webServer_timeout python3 $TGLOCKSYS/misc/webUI/webSuper.py &
+else
+timeout $webServer_timeout python3 $TGLOCKSYS/misc/webUI/webRegister.py &
+fi
+fi
 else
 echo "Access Denied"
 python $TGLOCKSYS/misc/scripts/readerLED.py RLED_blink 2 &

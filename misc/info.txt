@@ -7,6 +7,7 @@
 1- copy the folder 'scripts' to the $HOME folder of the default user
 2- copy the file 'TGLockSystemON_indicator.service' to /etc/systemd/system folder
 3- enable the service at boot by runnig this command ( sudo systemctl enable TGLockSystemON_indicator.service )
+4- enable the service at boot by runnig this command ( sudo systemctl enable TGLockSystem_cardDetect.service )
 
 
 # Make TGLockSystem global system wide

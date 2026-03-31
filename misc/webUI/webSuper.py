@@ -94,8 +94,8 @@ class SimpleRequestHandler(BaseHTTPRequestHandler):
             post_data3 = post_data[2]
             try:
                 CardRaw = subprocess.run(["bash","readIDcard",post_data1,post_data2,"register"], capture_output=True, text=True, check=True)
-            except subprocess.CalledProcessError as e:
-                CardRaw = ""
+            #except subprocess.CalledProcessError as e:
+            #    CardRaw = ""
             
             # 2. Prepare an HTML response with a "Go Back" link
             if not post_data1 or not post_data2 or not CardRaw:

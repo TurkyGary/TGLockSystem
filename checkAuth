@@ -2,7 +2,7 @@
 
 TEMP_FILE=/home/ecel2b40/Documents/TGLockSystem/logs/access/read.tmp
 #webServer_timeout=300 # 5 minutes
-webServer_timeout=120 # 2 minute
+webServer_timeout=1200 # 20 minutes
 
 # import the Raw key 
 raw=$(grep -oP '(?<=Raw: ).{16}' $TEMP_FILE)
@@ -17,6 +17,7 @@ admin=$(grep $user /home/ecel2b40/Documents/TGLockSystem/data/admins.csv | wc -l
 super=$(grep $user /home/ecel2b40/Documents/TGLockSystem/data/super.csv | wc -l)
 if [ "$granted" -gt 0 ]; then
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_success &
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py GLED_on 5 &
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/unlock.py &
 echo "Door is unlocked."
 if [ "$admin" -gt 0 ]; then

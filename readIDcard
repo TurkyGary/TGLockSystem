@@ -88,6 +88,8 @@ function auto_card_register() {
     
     # Execute the read command
     readCard
+    getCardRaw
+    raw=$RAW
 
     # Check for success in the log file
     if grep -q 'ok' "/home/ecel2b40/Documents/TGLockSystem/logs/access/read.tmp"; then

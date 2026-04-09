@@ -1,0 +1,9 @@
+NOTE: The following lines should be copied to thier cossesponding files...
+(access_list.csv) file:
+00013600,007870605e2d3713
+
+(granted.csv) file:
+00013600
+
+(.bkp.log) file:
+[2026Apr09_104743]IOProx,XSF(02)C1:58022,Raw:007870605e2d3713(ok),00013600,Sami_Alghamdi

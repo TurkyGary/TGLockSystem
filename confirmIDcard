@@ -9,7 +9,7 @@ then
 /home/ecel2b40/Documents/TGLockSystem/checkAuth
 else
 echo "Card Unrecognized"
-python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_fail &
+#python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_fail &
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py RLED_blink 2 &
 #nop 
 # do nothing

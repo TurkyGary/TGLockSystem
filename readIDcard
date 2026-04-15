@@ -18,7 +18,7 @@ function readCardRaw(){
  getCardRaw
  if [[ -z "$RAW" || "$RAW" == +([[:space:]]) ]];then
      # Fail feedback signals
-     python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py" cardRead_fail &
+     #python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py" cardRead_fail &
      python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py" RLED_blink 4 &
  else
      # Success feedback signals
@@ -67,7 +67,7 @@ function card_register() {
         python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py" BLED_blink 4 &
     else
         echo "Cannot read your card. Try again."
-        python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py" cardRead_fail &
+        #python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py" cardRead_fail &
         return 1
     fi
 }
@@ -115,7 +115,7 @@ function auto_card_register() {
         echo " "
         echo "Cannot read your card. Try again."
         # Fail feedback signals
-        python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py" cardRead_fail &
+        #python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py" cardRead_fail &
         python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py" RLED_blink 2 &
         return 1
     fi

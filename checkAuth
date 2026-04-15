@@ -20,6 +20,12 @@ python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_suc
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py GLED_on 5 &
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/unlock.py &
 echo "Door is unlocked."
+else
+echo "Access Denied"
+python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py RLED_blink 2 &
+#python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_fail &
+fi
+
 if [ "$admin" -gt 0 ]; then
 echo "Admin"
 if [ "$super" -gt 0 ]; then
@@ -28,6 +34,7 @@ if [ "$super" -gt 0 ]; then
 echo "Super"
 bash /home/ecel2b40/Documents/TGLockSystem/misc/scripts/TGLockHotspot.sh &
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py LEDs_off &
+sleep 1
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py BLED_on 5 &
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py wifiConnect &
 
@@ -36,17 +43,13 @@ else
 #If Admin login
 bash /home/ecel2b40/Documents/TGLockSystem/misc/scripts/wifiConnect.sh &
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py LEDs_off &
+sleep 1
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py cycle_rgb 5 &
 #timeout $webServer_timeout python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webRegister.py &
 fi
-else
-python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py LEDs_off &
-python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py GLED_on 1 &
-fi
-else
-echo "Access Denied"
-python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py RLED_blink 2 &
-#python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py cardRead_fail &
+#else
+#python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py LEDs_off &
+#python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py GLED_on 1 &
 fi
 
 else

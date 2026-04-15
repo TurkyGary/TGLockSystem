@@ -37,6 +37,25 @@ def cardRegister():
     sleep(0.06)
     buzzer.off()
 
+# WIFI: Buzzing Mario Win
+def wifiConnect():
+    buzzer.on()
+    sleep(0.5)
+    buzzer.off()
+    sleep(0.125)
+    buzzer.on()
+    sleep(0.03)
+    buzzer.off()
+    sleep(0.12)
+    buzzer.on()
+    sleep(0.06)
+    buzzer.off()
+    sleep(0.06)
+    buzzer.on()
+    sleep(0.25)
+    buzzer.off()
+    
+
 # Call methods from command prompt
 if __name__ == "__main__":
     #globals()[sys.argv[1]](sys.argv[2:])

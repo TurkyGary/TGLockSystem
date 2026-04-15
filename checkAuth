@@ -24,8 +24,14 @@ if [ "$admin" -gt 0 ]; then
 bash /home/ecel2b40/Documents/TGLockSystem/misc/scripts/TGLockHotspot.sh &
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py BLED_on 3 &
 if [ "$super" -gt 0 ]; then
+#if Super login
+#Run wifi
+bash /home/ecel2b40/Documents/TGLockSystem/misc/scripts/wifiConnect.sh
+python3 /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py wifiConnect &
+
 #timeout $webServer_timeout python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webSuper.py &
 else
+#If Admin login
 #timeout $webServer_timeout python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webRegister.py &
 fi
 else

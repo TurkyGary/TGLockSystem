@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo ppefail
+set -euo pipefail
 # -e: stop when a command fails.
 # -u: stop when undefined variable is used.
 # pipefail: detect failure anywhere in a pipeline.

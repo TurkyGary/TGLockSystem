@@ -1,0 +1,17 @@
+[Unit]
+Description= webUI
+After=network.target
+
+[Service]
+# Set the user who owns the script
+User=ecel2b40
+Group=ecel2b40
+WorkingDirectory=/home/ecel2b40/Documents/TGLockSystem/misc/webUI
+ExecStart=/usr/bin/python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webRegister.py
+Restart=on-failure
+# Optional: Ensure output shows up in 'journalctl -u TGLockSystem_webUI.service'
+StandardOutput=inherit
+StandardError=inherit
+
+[Install]
+WantedBy=multi-user.target

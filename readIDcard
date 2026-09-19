@@ -9,7 +9,7 @@ function readCard(){
 
 function getCardRaw(){
  RAW=$(grep -oP '(?<=Raw: ).{16}' "$TEMP_FILE")
- echo $RAW
+ #echo $RAW
 }
 
 function readCardRaw(){
@@ -25,7 +25,7 @@ function readCardRaw(){
      python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py" cardRegister &
      python3 "/home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py" BLED_blink 4 &
  fi
- echo $RAW
+ #echo $RAW
 }
 
 function card_register() {
@@ -145,6 +145,7 @@ else if [ $# -gt 0 ] && [ $# -lt 4 ];then
   fi
   if [ $1 == "readCardRaw" ];then
    readCardRaw
+   echo $RAW
   fi 
  fi
  if [ $# -eq 2 ];then

@@ -49,14 +49,19 @@ class SimpleRequestHandler(BaseHTTPRequestHandler):
         post_data = re.findall(r'=(.*?)(?:&|$)', post_data)
         post_data1 = post_data[0]
         post_data2 = post_data[1]
-        post_data3 = post_data[2]
-        try:
-            CardRaw = subprocess.run(["bash","readIDcard",post_data1,post_data2,"register"], capture_output=True, text=True, check=True)
-        except subprocess.CalledProcessError as e:
-            CardRaw = ""
+        #post_data3 = post_data[2]
+        post_data3 = "Read Card"
+        CardRaw = ""
+        #command = f"readIDcard {post_data1} {post_data2} register"
+        #command = f"readIDcard readCardRaw"
+        #try:
+            #CardRaw = subprocess.run([\"bash\",\"readIDcard\",post_data1,post_data2,\"register\"], capture_output=True, text=True, check=True)
+            #CardRaw = subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+        #except subprocess.CalledProcessError as e:
+            #CardRaw = ""
         
         # 2. Prepare an HTML response with a "Go Back" link
-        if not post_data1 or not post_data2 or not CardRaw:
+        if not post_data1 or not post_data2:
            response_html = f"""
            <html>
                <body>
@@ -65,13 +70,19 @@ class SimpleRequestHandler(BaseHTTPRequestHandler):
                    <h2>ID: <strong>{post_data1}</strong></h2>
                    <h2>Card: <strong>{CardRaw}</strong></h2>
                    <hr>
-                  <a href="javascript:history.back()"><h1>&larr; Try again</h1></a>
+                  <!-- <a href="javascript:history.back()"><h1>&larr; Try again</h1></a> -->
                </body>
            </html>
            """
         else:
-           CardRaw_output=CardRaw.stdout.strip().splitlines()
-           status_msg, CardRaw, access_msg = CardRaw_output
+           command1 = f"readIDcard readCardRaw"
+           try:
+              CardRaw = subprocess.run(command1, shell=True, capture_output=True, text=True, check=True)
+           except subprocess.CalledProcessError as e:
+              CardRaw = ""
+           CardRaw_output=CardRaw.stdout.strip()
+           #status_msg, CardRaw, access_msg = CardRaw_output
+           CardRaw = CardRaw_output
            response_html = f"""
            <html>
                <body>
@@ -84,6 +95,11 @@ class SimpleRequestHandler(BaseHTTPRequestHandler):
                </body>
            </html>
            """
+           command2 = f"readIDcard {post_data1} {post_data2} register"
+           try:
+              CardRaw = subprocess.run(command2, shell=True, capture_output=True, text=True, check=True)
+           except subprocess.CalledProcessError as e:
+              print("Could not Write to files.")     
         
         # 3. Send headers (Note: Content-type is now text/html)
         self.send_response(200)

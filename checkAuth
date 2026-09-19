@@ -27,11 +27,11 @@ python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py RLED_blin
 fi
 
 if [ "$admin" -gt 0 ]; then
-echo "Admin"
-if [ "$super" -gt 0 ]; then
+#echo "Admin"
+#if [ "$super" -gt 0 ]; then
 #if Super login
 #Run wifi
-echo "Super"
+#echo "Super"
 bash /home/ecel2b40/Documents/TGLockSystem/misc/scripts/TGLockHotspot.sh &
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py LEDs_off &
 sleep 1
@@ -39,18 +39,18 @@ python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py BLED_on 5
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/buzzer.py wifiConnect &
 
 #timeout $webServer_timeout python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webSuper.py &
-else
+#else
 #If Admin login
 bash /home/ecel2b40/Documents/TGLockSystem/misc/scripts/wifiConnect.sh &
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py LEDs_off &
 sleep 1
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py cycle_rgb 5 &
-#timeout $webServer_timeout python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webRegister.py &
+timeout $webServer_timeout python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webRegister.py &
 fi
 #else
 #python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py LEDs_off &
 #python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py GLED_on 1 &
-fi
+#fi
 
 else
 echo "Card is not registered"

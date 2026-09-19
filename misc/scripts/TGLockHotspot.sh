@@ -2,7 +2,7 @@
 
 # Configuration
 SSID="TGLOCKSYS"
-PASS="12345678"
+PASS="tglocksys"
 CON_NAME="TGLockHotspot"
 PI_IP="192.168.192.168/24"
 DURATION=1200

@@ -64,6 +64,9 @@ class SimpleRequestHandler(BaseHTTPRequestHandler):
         if not post_data1 or not post_data2:
            response_html = f"""
            <html>
+             <head>
+               <link rel="icon" href="data:,">
+             </head>
                <body>
                    <h1>Error: Incomplete Information</h1>
                    <h2>User: <strong>{post_data2}</strong></h2>
@@ -71,35 +74,57 @@ class SimpleRequestHandler(BaseHTTPRequestHandler):
                    <h2>Card: <strong>{CardRaw}</strong></h2>
                    <hr>
                   <!-- <a href="javascript:history.back()"><h1>&larr; Try again</h1></a> -->
+                   <a href="#" onclick="window.location.href = document.referrer; return false;"><h1>&larr; Back</h1></a>
                </body>
            </html>
            """
         else:
-           command1 = f"readIDcard readCardRaw"
+           #command1 = f"readIDcard readCardRaw"
+           command1 = f"readIDcard {post_data1} {post_data2} register"
            try:
               CardRaw = subprocess.run(command1, shell=True, capture_output=True, text=True, check=True)
            except subprocess.CalledProcessError as e:
               CardRaw = ""
-           CardRaw_output=CardRaw.stdout.strip()
-           #status_msg, CardRaw, access_msg = CardRaw_output
-           CardRaw = CardRaw_output
-           response_html = f"""
-           <html>
-               <body>
-                   <h1>ID Card Added.</h1>
+           if not CardRaw:
+              response_html = f"""
+              <html>
+                <head>
+                  <link rel="icon" href="data:,">
+                </head>
+                <body>
+                   <h1>Error: Incomplete Information</h1>
                    <h2>User: <strong>{post_data2}</strong></h2>
                    <h2>ID: <strong>{post_data1}</strong></h2>
-                   <h2>Card: <strong>{CardRaw}</strong></h2>
+                   <h2>Card: <strong>NO Card Read. Put your ID Card on the reader.<strong></h2>
                    <hr>
-                  <a href="#" onclick="window.location.href = document.referrer; return false;"><h1>&larr; Register another Card</h1></a>
-               </body>
-           </html>
-           """
-           command2 = f"readIDcard {post_data1} {post_data2} register"
-           try:
-              CardRaw = subprocess.run(command2, shell=True, capture_output=True, text=True, check=True)
-           except subprocess.CalledProcessError as e:
-              print("Could not Write to files.")     
+                   <a href="#" onclick="window.location.href = document.referrer; return false;"><h1>&larr; Back</h1></a>
+                </body>
+              </html>
+              """ 
+           else:
+               CardRaw_output=CardRaw.stdout.strip()
+               #status_msg, CardRaw, access_msg = CardRaw_output
+               CardRaw = CardRaw_output
+               response_html = f"""
+               <html>
+                 <head>
+                   <link rel="icon" href="data:,">
+                 </head>
+                 <body>
+                    <h1>ID Card Added.</h1>
+                    <h2>User: <strong>{post_data2}</strong></h2>
+                    <h2>ID: <strong>{post_data1}</strong></h2>
+                    <h2>Card: <strong>{CardRaw}</strong></h2>
+                    <hr>
+                    <a href="#" onclick="window.location.href = document.referrer; return false;"><h1>&larr; Register another Card</h1></a>
+                  </body>
+                </html>
+                """
+                #command2 = f"readIDcard {post_data1} {post_data2} register"
+                #try:
+                #CardRaw = subprocess.run(command2, shell=True, capture_output=True, text=True, check=True)
+                #except subprocess.CalledProcessError as e:
+                #print("Could not Write to files.")     
         
         # 3. Send headers (Note: Content-type is now text/html)
         self.send_response(200)

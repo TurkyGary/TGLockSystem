@@ -45,7 +45,7 @@ bash /home/ecel2b40/Documents/TGLockSystem/misc/scripts/wifiConnect.sh &
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py LEDs_off &
 sleep 1
 python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py cycle_rgb 5 &
-timeout $webServer_timeout python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webRegister.py &
+#timeout $webServer_timeout python3 /home/ecel2b40/Documents/TGLockSystem/misc/webUI/webRegister.py &
 fi
 #else
 #python /home/ecel2b40/Documents/TGLockSystem/misc/scripts/readerLED.py LEDs_off &
